@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://The_Alchemist_Quest/scripts/player/Player.gd" type="Script" id=1]
+[ext_resource path="res://The_Alchemist_Quest/scripts/player-script/Player.gd" type="Script" id=1]
 [ext_resource path="res://The_Alchemist_Quest/assets/sprintes/upinipin.png" type="Texture" id=2]
 [ext_resource path="res://The_Alchemist_Quest/assets/sprintes/stand/frame_3_delay-0.1s.png" type="Texture" id=3]
 [ext_resource path="res://The_Alchemist_Quest/assets/sprintes/stand/frame_7_delay-0.1s.png" type="Texture" id=4]
@@ -28,8 +28,8 @@ animations = [ {
 radius = 22.0
 height = 38.0
 
-[node name="Player" type="Area2D"]
-position = Vector2( 26, 42 )
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 125, 135 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -46,4 +46,8 @@ offset = Vector2( 7, 0 )
 position = Vector2( -1, 1 )
 shape = SubResource( 2 )
 
-[connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2( 1.47118, 1.01167 )
+current = true
+zoom = Vector2( 0.7, 0.7 )
+smoothing_enabled = true

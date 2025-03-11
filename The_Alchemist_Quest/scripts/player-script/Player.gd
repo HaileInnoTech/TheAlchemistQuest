@@ -1,16 +1,14 @@
-extends Area2D
-signal hit
+extends KinematicBody2D  # Changed from Node2D to KinematicBody2D
+
 export var speed = 400
-var screen_size
+var velocity = Vector2.ZERO  # Movement vector
 
 func _ready():
-	screen_size = get_viewport_rect().size
 	$AnimatedSprite.animation = "stand"
 	$AnimatedSprite.play()
 
-
-func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
+func _physics_process(delta):  # Use _physics_process for physics updates
+	velocity = Vector2.ZERO  # Reset velocity each frame
 
 	# Capture movement input
 	if Input.is_action_pressed("move_right"):
@@ -22,33 +20,26 @@ func _process(delta):
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
 
-	# Normalize movement to avoid diagonal speed increase
+	# Normalize movement to prevent diagonal speed boost
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
-		position += velocity * delta
 
-		# Play "walk" animation only if it's not already playing
 		if $AnimatedSprite.animation != "walk":
 			$AnimatedSprite.animation = "walk"
 			$AnimatedSprite.play()
 	else:
-		# Play "stand_still" animation only if it's not already playing
 		if $AnimatedSprite.animation != "stand":
 			$AnimatedSprite.animation = "stand"
 			$AnimatedSprite.play()
 
-	# Clamp position to stay within screen bounds
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
+	# Move player with collision handling
+	velocity = move_and_slide(velocity)
 
-
-func _on_Player_body_entered(body, hit):
-	hide() # Player disappears after being hit.
-	hit.emit()
-	$CollisionShape2D.set_deferred("disable", true)
-	
-	
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+
+# Collision detection function
+func _on_Player_body_entered(body):
+	print("Hit the wall: ", body.name)
