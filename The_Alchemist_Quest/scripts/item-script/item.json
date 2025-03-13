@@ -1,0 +1,24 @@
+{
+  "stage1": [
+    {
+      "itemID": "1",
+      "itemName": "NPC",
+      "itemDescription": [
+        "Hello",
+        "Welcome to the Lab",
+        "Maybe I can use this one"
+      ],
+      "path": "res://The_Alchemist_Quest/assets/ui/Mentor_NPC.png"
+    },
+    {
+      "itemID": "2",
+      "itemName": "computer",
+      "itemDescription": [
+        "Maybe I can use this one",
+        "Maybe I can use this one",
+        "Maybe I can use this one"
+      ],
+      "path": "res://The_Alchemist_Quest/assets/ui/Intro_room_shelf.png"
+    }
+  ]
+}

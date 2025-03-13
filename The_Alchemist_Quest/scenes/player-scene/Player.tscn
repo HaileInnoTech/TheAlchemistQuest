@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://The_Alchemist_Quest/scripts/player-script/Player.gd" type="Script" id=1]
 [ext_resource path="res://The_Alchemist_Quest/assets/sprintes/upinipin.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://The_Alchemist_Quest/assets/sprintes/stand/frame_1_delay-0.1s.png" type="Texture" id=8]
 [ext_resource path="res://The_Alchemist_Quest/assets/sprintes/stand/frame_5_delay-0.1s.png" type="Texture" id=9]
 [ext_resource path="res://The_Alchemist_Quest/assets/sprintes/stand/frame_0_delay-0.1s.png" type="Texture" id=10]
+[ext_resource path="res://The_Alchemist_Quest/scenes/dialog-scene/Dialog.tscn" type="PackedScene" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -29,7 +30,7 @@ radius = 22.0
 height = 38.0
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 125, 135 )
+position = Vector2( 199, 281 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -51,3 +52,9 @@ scale = Vector2( 1.47118, 1.01167 )
 current = true
 zoom = Vector2( 0.7, 0.7 )
 smoothing_enabled = true
+
+[node name="Dialog" parent="Camera2D" instance=ExtResource( 11 )]
+margin_left = -168.572
+margin_top = 47.4463
+margin_right = 171.428
+margin_bottom = 247.446

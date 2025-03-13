@@ -1,11 +1,19 @@
 extends KinematicBody2D  # Changed from Node2D to KinematicBody2D
 
+onready var dialog = $Camera2D/Dialog
+
 export var speed = 400
 var velocity = Vector2.ZERO  # Movement vector
 
 func _ready():
+	
+	add_to_group("player")
+	dialog.visible= false
 	$AnimatedSprite.animation = "stand"
 	$AnimatedSprite.play()
+	
+func _on_trigger_dialog(dialog_text):
+	print("📢 Received Signal! Description:",dialog_text)  # Print received data
 
 func _physics_process(delta):  # Use _physics_process for physics updates
 	velocity = Vector2.ZERO  # Reset velocity each frame
